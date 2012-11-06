@@ -51,6 +51,7 @@ public class LoginDAOImpl implements LoginDAO {
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     @Override
@@ -69,16 +70,15 @@ public class LoginDAOImpl implements LoginDAO {
     }
 
     @Override
-    public int getUser(Login o) throws SQLException {
-        int a = 0;
-        String sql = "select * from t_login where username = ? and password = ?";
+    public int getUser(String username, String password) throws SQLException {
+        int status = 0;
+        String sql = "select count(*) from t_login where username = ? and password = ?";
         PreparedStatement ps = this.conn.prepareStatement(sql);
-        ps.setString(1, o.getUsername());
-        ps.setString(2, o.getPassword());
+        ps.setString(1, username);
+        ps.setString(2, password);
         ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            a = 1;
-        }
-        return a;
+        rs.first();
+        status = rs.getInt(1);
+        return status;
     }
 }

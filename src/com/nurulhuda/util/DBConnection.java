@@ -32,7 +32,7 @@ public class DBConnection {
     static final String DB_USER = "root";
     static final String DB_PASS="";
 
-    public DBConnection() {
+    private DBConnection() {
         if(conn==null){
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();

@@ -30,6 +30,6 @@ public interface LoginDAO {
     void insert(Login o)throws SQLDataException;
     void update(Login o)throws SQLDataException;
     void delete(String id)throws SQLDataException;
-    int getUser(Login o)throws SQLException;
+    int getUser(String username, String password)throws SQLException;
     List<Login> getAll()throws SQLDataException;
 }
